@@ -1,89 +1,40 @@
 // Assignment 1 | COMP1073 Client-Side JavaScript
-alert("It works")
+// Brad Buttineau 100078616
 /* Variables
 -------------------------------------------------- */
 // Create a new speechSynthesis object
-var synth = window.speechSynthesis;
+let synth = window.speechSynthesis;
 // Learn more about SpeechSynthesis.speak() at https://developer.mozilla.org/en-US/docs/Web/API/SpeechSynthesis/speak
-var textToSpeak = 'This is the text string that you will generate with your script';
-var speakButton = document.querySelector('button');
+let textToSpeak = '';
+let speakButton = document.querySelector('#speakBtn');
+let debug = document.querySelector('#debug');
 
 //made variables//
-var purpleBtn = document.getElementById('purpleBtn');
-var blueBtn = document.getElementById('blueBtn');
-var greenBtn = document.getElementById('greenBtn');
-var orangeBtn = document.getElementById('orangeBtn');
-var pinkBtn = document.getElementById('pinkBtn');
-var randStory = document.getElementById('randStory');
+let purpleBtn = document.getElementById("purpleBtn");
+let blueBtn = document.querySelector('#blueBtn');
+let greenBtn = document.querySelector('#greenBtn');
+let orangeBtn = document.querySelector('#orangeBtn');
+let pinkBtn = document.querySelector('#pinkBtn');
+let randStory = document.querySelector('#randStory');
+let resetStory = document.querySelector('#reset');
 
 
 
 //to speak
- purpleBtn = new SpeechSynthesisUtterance(" The turkey", "Mom", "Dad", "The dog", "My teacher", "The elephant", "The cat");
-window.speechSynthesis.speak(purpleBtn);
-
-blueBtn = new SpeechSynthesisUtterance("sat on", "ate", "danced with", "saw", "doesn't like", "kissed");
-window.speechSynthesis.speak(blueBtn);
-
- greenBtn = new SpeechSynthesisUtterance("a funny", "a scary", " a goofy", " a slimy", "a barking", "a fat");
-window.speechSynthesis.speak(greenBtn);
-
-orangeBtn = new SpeechSynthesisUtterance(" goat", "monkey", "fish", "cow", "frog", "bug", "worm");
-window.speechSynthesis.speak(orangeBtn);
-pinkBtn = new SpeechSynthesisUtterance(" On the moon", "on the chair", "in my spaghetti", "in my soup", "on the grass", "in my shoes");
-window.speechSynthesis.speak(pinkBtn);
-
-
-//var randStory = new speechSynthesis("randStory.random");
-//window.speechSynthesis.speak(randStory);
-
-
-
-
+let purpleString = ["The turkey", "Mom", "Dad", "The dog", "My teacher", "The elephant", "The cat"]; // 0
+let blueString = ["sat on", "ate", "danced with", "saw", "doesn't like", "kissed"]; // 1
+let greenString = ["a funny", "a scary", " a goofy", " a slimy", "a barking", "a fat"]; // 2
+let orangeString = ["goat", "monkey", "fish", "cow", "frog", "bug", "worm"]; // 3
+let pinkString = ["on the moon", "on the chair", "in my spaghetti", "in my soup", "on the grass", "in my shoes"]; //var
+let text = ["", "", "", "", ""];
+let textIndex = [-1, -1, -1, -1, -1];
 
 /* Functions
 -------------------------------------------------- */
 function speakNow(string) {
 	// Create a new speech object, attaching the string of text to speak
-	var utterThis = new SpeechSynthesisUtterance(string);
-	utterThis = new SpeechSynthesis.text(string);
-
-	//code here//
-	function purple() {
-		utterThis = new SpeechSynthesisUtterance(purpleBtn);
-		utterThis = new speechSynthesis.text(purpleBtn, value);
-	}
-	function blue() {
-		utterThis = new SpeechSynthesisUtterance(blueBtn);
-		utterThis = new speechSynthesis.text(blueBtn, value);
-	}
-	function green() {
-		utterThis = new SpeechSynthesisUtterance(greenBtn);
-		utterThis = new speechSynthesis.text(greenBtn, value);
-	}
-	function orange() {
-		utterThis = new SpeechSynthesisUtterance(orangeBtn);
-		utterThis = new speechSynthesis.text(orangeBtn, value);
-	}
-	function ButtonPink() {
-		utterThis = new SpeechSynthesisUtterance(pinkBtn);
-		utterThis = new speechSynthesis.text(pinkBtn, value);
-	}
-	function randomStory(){
-		random.random
-		if(randStory.onclick = random.randomStory){
-		utterThis = new speechSynthesis(string);
-	
-		}
-	}
-
-
-
-
-	//Actually speak the text
-	// utterThis.pitch(pitch.value);
-	// utterThis.rate(rate.value);
-	
+	const utterThis = new SpeechSynthesisUtterance(string);
+	// Actually speak the text
 	synth.speak(utterThis);
 }
 
@@ -92,51 +43,71 @@ function speakNow(string) {
 /* Event Listeners
 -------------------------------------------------- */
 // Onclick handler for the button that speaks the text contained in the above var textToSpeak
-speakButton.onclick = function () {
+purpleBtn.addEventListener('click', function () {
+	buttonEventListener(0, purpleString);
+});
 
-	//new button event listeners//
+blueBtn.addEventListener('click', function () {
+	buttonEventListener(1, blueString);
+});
 
-	speakButton.onclick= purple.addEventListener('click', () => {
-		textToSpeak(purpleBtn.value)
-	});
-	document.getElementById("blueBtn").addEventListener('click', () => {
-		textToSpeak(blueBtn.value)
-	});
-	document.getElementById("greenBtn").addEventListener('click', () => {
-		textToSpeak(greenBtn.value)
-	});
-	document.getElementById("orangeBtn").addEventListener('click', () => {
-		textToSpeak(orangeBtn.value)
-	});
-	document.getElementById("pinkBtn").addEventListener('click', () => {
-		textToSpeak(pinkBtn.value)
-	});
-	//document.getElementById("randStory").addEventListener('click' () =>{
-		//textToSpeak(randStory.value);
-	//});
+greenBtn.addEventListener('click', function () {
+	buttonEventListener(2, greenString);
+});
 
+orangeBtn.addEventListener('click', function () {
+	buttonEventListener(3, orangeString);
+});
 
-	// default: speech recognition rules//
-	// utterThis.onpause =(button) => {
-		// const char = Event.utterance.text.charAt(button.charIndex);
-		// console.log(
-			// `speech paused at character ${button,charIndex} of "${button.utterance.text}", which is "${','}". `
-		// );
-		// };
-	// 
-	//when clicked//
-	purpleBtn.onclick(textToSpeak);
-	blueBtn.onclick(textToSpeak);
-	greenBtn.onclick(textToSpeak);
-	orangeBtn.onclick(textToSpeak);
-	pinkBtn.onclick(textToSpeak);
+pinkBtn.addEventListener('click', function () {
+	buttonEventListener(4, pinkString);
+});
 
-
-
-
-	{
-		speakNow(textToSpeak);
-
+function buttonEventListener(index, string) {
+	// checks if its the first time clicking a button
+	if (textIndex[index] == -1) {
+		textIndex[index] = 0;
 	}
+
+	// set text to array index and say it aloud
+	text[index] = string[textIndex[index]];
+	speakNow(text[index]);
+
+	// see if next array element exists, if yes then add 1 if not then reset back to 0
+	if (textIndex[index] + 1 === string.length) {
+		textIndex[index] = 0;
+	} else {
+		textIndex[index]++;
+	}
+
+	debug.innerHTML = text.toString();
 }
 
+
+randStory.addEventListener('click', function () {
+	speakNow();
+})
+// random story functions
+function getRandomStory() {
+
+	return (
+		purpleString[Math.floor(Math.random() * purpleString.length)] +
+		" " +
+		blueString[Math.floor(Math.random() * blueString.length)] +
+		" " +
+		greenString[Math.floor(Math.random() * greenString.length)] +
+		" " +
+		orangeString[Math.floor(Math.random() * orangeString.length)] +
+		" " +
+		pinkString[Math.floor(Math.random() * pinkString.length)] +
+		"."
+	);
+}
+
+
+resetStory.addEventListener('click', function () {
+	text = ["", "", "", "", ""];
+	textIndex = [-1, -1, -1, -1, -1];
+	debug.innerHTML = text.toString();
+
+});
